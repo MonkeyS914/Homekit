@@ -20,7 +20,7 @@ Accessory <----X----- iOS device
 
 大致如图所示
 <div align=center >
-![](http://ww4.sinaimg.cn/mw690/7cafd2d5gw1f9vbl640k8j20j60j6acl.jpg)
+![image](http://ww4.sinaimg.cn/mw690/7cafd2d5gw1f9vbl640k8j20j60j6acl.jpg)
 </div>
 
 在platform和phone之间需要自定义协议，而platform需要兼容两类Accessory。再回头看HAP-NodeJS的代码，只实现了Accessory端的服务，而作为自定义的platform，没有HomeKit framework的支持，不是太容易和HAP Accessory进行通信。最暴力的办法是模拟出HomeKit framework的功能。幸好Accessory端的代码有，至少知道Accessory是怎么接受数据，处理数据，然后返回的。
@@ -150,15 +150,15 @@ HAP底层是基于[Bonjour](https://developer.apple.com/bonjour/)零配置互相
 ~~~
 为了更清楚地了解pair过程，可以用iPhone来走一遍流程，在Mac终端上用DEBUG=* node BridgedCore.js命令打开HAP NodeJS的debug功能，在一些关键性的步骤上加上debug明亮可以看到终端的输出情况，如下图所示：
 <div align=center >
-![](http://ww2.sinaimg.cn/mw690/7cafd2d5gw1f9vc592jz0j20fu0a6q6r.jpg)
+![image](http://ww2.sinaimg.cn/mw690/7cafd2d5gw1f9vc592jz0j20fu0a6q6r.jpg)
 
-![](http://ww3.sinaimg.cn/mw690/7cafd2d5gw1f9vc69ffi6j20fu0a6mzx.jpg)
+![image](http://ww3.sinaimg.cn/mw690/7cafd2d5gw1f9vc69ffi6j20fu0a6mzx.jpg)
 </div>
 可以看到在发现服务后用HTTP来pair，**{ '0': \<Buffer 00>, '6': \<Buffer 01> }**就是我们需传的pair data。在HAPServer.js这个文件里面有各种type对应的编码，需要仔细看下pair是属于哪一类type，需要几步完成。
 
 然后辅助wireshark，进一步知道HTTP body为[tlv](http://www.360doc.com/content/15/0716/15/16410669_485283089.shtml)格式的数据,在HAP NodeJS中也有tlv 的encode和decode的方法，可以按照他的流程移到XCode工程中，模拟一个HTTP pair的请求。
 <div align=center >
-![](http://ww3.sinaimg.cn/mw690/7cafd2d5gw1f9vc6xut6lj20np0kf0wr.jpg)
+![image](http://ww3.sinaimg.cn/mw690/7cafd2d5gw1f9vc6xut6lj20np0kf0wr.jpg)
 </div>
 最后模拟一个pair请求，看看是否work
 
@@ -184,7 +184,7 @@ HAP底层是基于[Bonjour](https://developer.apple.com/bonjour/)零配置互相
 ~~~
 可以看到模拟成功了
 <div align=center >
-![](http://ww2.sinaimg.cn/mw690/7cafd2d5gw1f9vdg4lgyzj20sc064mzh.jpg)
-![](http://ww1.sinaimg.cn/mw690/7cafd2d5gw1f9vdhu3h82j20fu0a6dij.jpg)
+![image](http://ww2.sinaimg.cn/mw690/7cafd2d5gw1f9vdg4lgyzj20sc064mzh.jpg)
+![image](http://ww1.sinaimg.cn/mw690/7cafd2d5gw1f9vdhu3h82j20fu0a6dij.jpg)
 </div>
 其他的接口也可以按照类似的方法，在HAP NodeJS的基础逆向出来😁
