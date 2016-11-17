@@ -157,7 +157,7 @@ HAP底层是基于[Bonjour](https://developer.apple.com/bonjour/)零配置互相
 
 然后辅助wireshark，进一步知道HTTP body为[tlv](http://www.360doc.com/content/15/0716/15/16410669_485283089.shtml)格式的数据,在HAP NodeJS中也有tlv 的encode和decode的方法，可以按照他的流程移到XCode工程中，模拟一个HTTP pair的请求。
 <div align=center >
-![image](http://ww3.sinaimg.cn/mw690/7cafd2d5gw1f9vc6xut6lj20np0kf0wr.jpg)
+<img src="http://ww3.sinaimg.cn/mw690/7cafd2d5gw1f9vc6xut6lj20np0kf0wr.jpg"/>
 </div>
 最后模拟一个pair请求，看看是否work
 
@@ -184,6 +184,6 @@ HAP底层是基于[Bonjour](https://developer.apple.com/bonjour/)零配置互相
 可以看到模拟成功了
 <div align=center >
 <img src="http://ww2.sinaimg.cn/mw690/7cafd2d5gw1f9vdg4lgyzj20sc064mzh.jpg"/>
-<img src="http://ww1.sinaimg.cn/mw690/7cafd2d5gw1f9vdhu3h82j20fu0a6dij.jpg)"/>
+<img src="http://ww1.sinaimg.cn/mw690/7cafd2d5gw1f9vdhu3h82j20fu0a6dij.jpg"/>
 </div>
 其他的接口也可以按照类似的方法，在HAP NodeJS的基础逆向出来😁
