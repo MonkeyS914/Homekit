@@ -1,5 +1,6 @@
 #逆向 iOS HomeKit 接口（非Accessory端）
 PS:题目取为“逆向”实在是夸大了，只是在别人的基础上摸索出HomeKit端的接口,大神勿喷
+
 最近公司有涉及智能家居的项目，所以就学习了HomeKit相关的内容。具体可以了解之前的两篇预研文章：[Apple HomeKit](http://blog.csdn.net/u013883974/article/details/53204676)和[Google Smart Home](http://blog.csdn.net/u013883974/article/details/53097168).
 
 Apple继续发扬闭环的生态系统精神，HomeKit被打包成framework提供开发者使用，而且对于Accessory要求MFI认证。蛋疼的是MFI只对公司认证,个人开发者木有申请的资格。幸好有大神逆向了Accessory端的server代码[KhaosT](https://github.com/KhaosT)的[HAP-NodeJS](https://github.com/KhaosT/HAP-NodeJS)。这位大神在Apple实习过，正好是在HomeKit部门，你懂得😏。
