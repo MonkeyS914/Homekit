@@ -20,6 +20,7 @@ Accessory <----X----- iOS device
 
 大致如图所示
 <div align=center >
+<img src="http://ww4.sinaimg.cn/mw690/7cafd2d5gw1f9vbl640k8j20j60j6acl.jpg"/>
 ![image](http://ww4.sinaimg.cn/mw690/7cafd2d5gw1f9vbl640k8j20j60j6acl.jpg)
 </div>
 
