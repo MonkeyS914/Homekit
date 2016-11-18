@@ -32,7 +32,7 @@ Accessory <----X----- iOS device
 
 工具：wireshark、一台Mac（Windows也行，用于跑HAP-NodeJS服务）、XCode、sublime（用于修改和阅读NodeJS代码）
 
-HAP底层是基于[Bonjour](https://developer.apple.com/bonjour/)零配置互相发现协议，而Apple的Bonjour又是基于mDNS来实现局域网内互相发现的.Object-C提供了[NSNetService](https://developer.apple.com/reference/foundation/netservice)和[NSNetServiceBrowser](https://developer.apple.com/reference/foundation/netservicebrowser)两个类，可以在上层发布和查找mDNS类的服务。所以，为了省事，在XCode上新建一个工程，用手机APP来测试。在这之前，你需要将HAP-NodeJS run起来，并且保证手机和HAP-NodeJS在同一局域网类。通过NSNetServiceBrowser来发现NSNetService并且解析HAP-NodeJS在局域网内发布服务的ip和端口。
+HAP底层是基于[Bonjour](https://developer.apple.com/bonjour/)零配置互相发现协议，而Apple的Bonjour又是基于mDNS来实现局域网内互相发现的.Object-C提供了[NSNetService](https://developer.apple.com/reference/foundation/netservice)和[NSNetServiceBrowser](https://developer.apple.com/reference/foundation/netservicebrowser)两个类，可以在上层发布和查找mDNS类的服务。所以，为了省事，在XCode上新建一个工程，用手机APP来测试。在这之前，你需要将HAP-NodeJS run起来，并且保证手机和HAP-NodeJS在同一局域网内。通过NSNetServiceBrowser来发现NSNetService并且解析HAP-NodeJS在局域网内发布服务的ip和端口。
 
 ~~~objective-c
 - (void)findService{
