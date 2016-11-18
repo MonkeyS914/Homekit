@@ -19,6 +19,9 @@ Accessory <----X----- iOS device
 </div>
 
 
+
+
+
            
 通过HAP协议，可以将不支持HAP协议的智能硬件挂到Home App下，但是，如果需要你自己做一个平台向下能兼容HAP Accessory和 Non HAP Accessory，向上可以对接iOS平台和安卓平台，这个时候就需要该平台有两个线程，一个作为HAP Accessory的bridge，另外一个作为 Non HAP Accessory的bridge。
 
