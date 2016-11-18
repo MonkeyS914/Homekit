@@ -19,7 +19,7 @@ Accessory <----X----- iOS device
 </div>
 
 
-
+           
 通过HAP协议，可以将不支持HAP协议的智能硬件挂到Home App下，但是，如果需要你自己做一个平台向下能兼容HAP Accessory和 Non HAP Accessory，向上可以对接iOS平台和安卓平台，这个时候就需要该平台有两个线程，一个作为HAP Accessory的bridge，另外一个作为 Non HAP Accessory的bridge。
 
 大致如图所示
@@ -45,7 +45,7 @@ HAP底层是基于[Bonjour](https://developer.apple.com/bonjour/)零配置互相
     [mainRunLoop runUntilDate:[NSDate dateWithTimeIntervalSinceNow:30]];
 }
 ~~~
-这里service type和Domain是怎么来，之前说的wireshark派上用场了，请移步下面wireshark截图,Host:Node\032Bridge._hap._tcp.local,就是这么来的😂
+这里service type和Domain是怎么来，之前说的wireshark派上用场了，请移步下面wireshark截图，Host:Node\032Bridge._hap._tcp.local，就是这么来的😂
 ~~~objective-c
 //发现服务
 - (void)netServiceBrowser:(NSNetServiceBrowser *)browser didFindService:(NSNetService *)service moreComing:(BOOL)moreComing {
