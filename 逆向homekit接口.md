@@ -11,12 +11,7 @@ Apple继续发扬闭环的生态系统精神，HomeKit被打包成framework提�
 
 后来发现有点不对尽，只有Accessory端模拟HAP的代码，可以说只能是设备被动地去接收iOS的指令或者查询。
 
-<div align=center >
-Accessory ---------->> iOS device
-</div>
-<div align=center >
-Accessory <<----X----- iOS device
-</div>
+<img src="http://ww3.sinaimg.cn/mw690/7cafd2d5jw1f9w2b2n9taj20u80cymzg.jpg"/>
 
 通过HAP协议，可以将不支持HAP协议的智能硬件挂到Home App下，但是，如果需要你自己做一个平台向下能兼容HAP Accessory和 Non HAP Accessory，向上可以对接iOS平台和安卓平台，这个时候就需要该平台有两个线程，一个作为HAP Accessory的bridge，另外一个作为 Non HAP Accessory的bridge。
 
