@@ -12,17 +12,12 @@ Apple继续发扬闭环的生态系统精神，HomeKit被打包成framework提�
 后来发现有点不对尽，只有Accessory端模拟HAP的代码，可以说只能是设备被动地去接收iOS的指令或者查询。
 
 <div align=center >
-Accessory ----------> iOS device
+Accessory ---------->> iOS device
 </div>
 <div align=center >
-Accessory <----X----- iOS device
+Accessory <<----X----- iOS device
 </div>
 
-
-
-
-
-           
 通过HAP协议，可以将不支持HAP协议的智能硬件挂到Home App下，但是，如果需要你自己做一个平台向下能兼容HAP Accessory和 Non HAP Accessory，向上可以对接iOS平台和安卓平台，这个时候就需要该平台有两个线程，一个作为HAP Accessory的bridge，另外一个作为 Non HAP Accessory的bridge。
 
 大致如图所示
@@ -155,14 +150,14 @@ HAP底层是基于[Bonjour](https://developer.apple.com/bonjour/)零配置互相
 @implementation AddressAndPort
 @end
 ~~~
-为了更清楚地了解pair过程，可以用iPhone来走一遍流程，在Mac终端上用DEBUG=* node BridgedCore.js命令打开HAP NodeJS的debug功能，在一些关键性的步骤上加上debug命令可以看到终端的输出情况，如下图所示：
+为了更清楚地了解pair过程，可以用iPhone来走一遍流程，在Mac终端上用DEBUG=* node BridgedCore.js命令打开HAP-NodeJS的debug功能，在一些关键性的步骤上加上debug命令可以看到终端的输出情况，如下图所示：
 <div align=center >
 <img src="http://ww2.sinaimg.cn/mw690/7cafd2d5gw1f9vc592jz0j20fu0a6q6r.jpg"/>
 <img src="http://ww3.sinaimg.cn/mw690/7cafd2d5gw1f9vc69ffi6j20fu0a6mzx.jpg"/>
 </div>
 可以看到在发现服务后用HTTP来pair，**{ '0': \<Buffer 00>, '6': \<Buffer 01> }**就是我们需传的pair data。在HAPServer.js这个文件里面有各种type对应的编码，需要仔细看下pair是属于哪一类type，需要几步完成。
 
-然后辅助wireshark，进一步知道HTTP body为[tlv](http://www.360doc.com/content/15/0716/15/16410669_485283089.shtml)格式的数据,在HAP NodeJS中也有tlv 的encode和decode的方法，可以按照他的流程移到XCode工程中，模拟一个HTTP pair的请求。
+然后辅助wireshark，进一步知道HTTP body为[tlv](http://www.360doc.com/content/15/0716/15/16410669_485283089.shtml)格式的数据,在HAP-NodeJS中也有tlv 的encode和decode的方法，可以按照他的流程移到XCode工程中，模拟一个HTTP pair的请求。
 <div align=center >
 <img src="http://ww3.sinaimg.cn/mw690/7cafd2d5gw1f9vc6xut6lj20np0kf0wr.jpg"/>
 </div>
@@ -193,4 +188,4 @@ HAP底层是基于[Bonjour](https://developer.apple.com/bonjour/)零配置互相
 <img src="http://ww2.sinaimg.cn/mw690/7cafd2d5gw1f9vdg4lgyzj20sc064mzh.jpg"/>
 <img src="http://ww1.sinaimg.cn/mw690/7cafd2d5gw1f9vdhu3h82j20fu0a6dij.jpg"/>
 </div>
-其他的接口也可以按照类似的方法，在HAP NodeJS的基础逆向出来😁
+其他的接口也可以按照类似的方法，在HAP-NodeJS的基础逆向出来😁
