@@ -5,7 +5,7 @@ PS:题目取为“逆向”实在是夸大了，只是在别人的基础上摸�
 
 Apple继续发扬闭环的生态系统精神，HomeKit被打包成framework提供开发者使用，而且对于Accessory要求MFI认证。蛋疼的是MFI只对公司认证,个人开发者木有申请的资格。幸好有大神逆向了Accessory端的server代码[KhaosT](https://github.com/KhaosT)的[HAP-NodeJS](https://github.com/KhaosT/HAP-NodeJS)。这位大神在Apple实习过，正好是在HomeKit部门，你懂得😏。
 
-首先是把HAP-NodeJS下载下来run一下，Mac下配置NodeJS环境和Python过程就略过了，网上百度很多教程，。
+首先是把HAP-NodeJS下载下来run一下，Mac下配置NodeJS环境和Python过程就略过了，网上百度很多教程。
 
 代码主要是Accessory端的，如何同iOS device配对，接收device的指令，发送Accessory的状态参数给device。他其实是把HAP协议逆向出来了，工程里的Accessory都是用代码模拟出来的。可以与iOS的Home APP交互。
 
@@ -25,7 +25,7 @@ Accessory <----X----- iOS device
 <img src="http://ww4.sinaimg.cn/mw690/7cafd2d5gw1f9vbl640k8j20j60j6acl.jpg"/>
 </div>
 
-在platform和phone之间需要自定义协议，而platform需要兼容两类Accessory。再回头看HAP-NodeJS的代码，只实现了Accessory端的服务，而作为自定义的platform，没有HomeKit framework的支持，不是太容易和HAP Accessory进行通信。最暴力的办法是模拟出HomeKit framework的功能。幸好Accessory端的代码有，至少知道Accessory是怎么接受数据，处理数据，然后返回的。
+在platform和phone之间需要自定义协议，而platform需要兼容两类Accessory。再回头看HAP-NodeJS的代码，只实现了Accessory端的服务，而作为自定义的platform，没有HomeKit framework的支持，不是太容易和HAP Accessory进行通信。最暴力的办法是模拟出HomeKit framework的功能。幸好Accessory端的代码有，至少知道Accessory是怎么接收数据，处理数据，然后返回的。
 
 **先从最简单做起：局域网内设备Pair**
 
@@ -150,7 +150,7 @@ HAP底层是基于[Bonjour](https://developer.apple.com/bonjour/)零配置互相
 @implementation AddressAndPort
 @end
 ~~~
-为了更清楚地了解pair过程，可以用iPhone来走一遍流程，在Mac终端上用DEBUG=* node BridgedCore.js命令打开HAP NodeJS的debug功能，在一些关键性的步骤上加上debug明亮可以看到终端的输出情况，如下图所示：
+为了更清楚地了解pair过程，可以用iPhone来走一遍流程，在Mac终端上用DEBUG=* node BridgedCore.js命令打开HAP NodeJS的debug功能，在一些关键性的步骤上加上debug命令可以看到终端的输出情况，如下图所示：
 <div align=center >
 <img src="http://ww2.sinaimg.cn/mw690/7cafd2d5gw1f9vc592jz0j20fu0a6q6r.jpg"/>
 <img src="http://ww3.sinaimg.cn/mw690/7cafd2d5gw1f9vc69ffi6j20fu0a6mzx.jpg"/>
