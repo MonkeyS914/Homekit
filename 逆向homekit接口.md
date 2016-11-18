@@ -10,14 +10,15 @@ Apple继续发扬闭环的生态系统精神，HomeKit被打包成framework提�
 代码主要是Accessory端的，如何同iOS device配对，接收device的指令，发送Accessory的状态参数给device。他其实是把HAP协议逆向出来了，工程里的Accessory都是用代码模拟出来的。可以与iOS的Home APP交互。
 
 后来发现有点不对尽，只有Accessory端模拟HAP的代码，可以说只能是设备被动地去接收iOS的指令或者查询。
-
+<div align=center >
 <img src="http://ww3.sinaimg.cn/mw690/7cafd2d5jw1f9w2b2n9taj20u80cymzg.jpg"/>
+</div>
 
 通过HAP协议，可以将不支持HAP协议的智能硬件挂到Home App下，但是，如果需要你自己做一个平台向下能兼容HAP Accessory和 Non HAP Accessory，向上可以对接iOS平台和安卓平台，这个时候就需要该平台有两个线程，一个作为HAP Accessory的bridge，另外一个作为 Non HAP Accessory的bridge。
 
 大致如图所示
 <div align=center >
-<img src="http://ww4.sinaimg.cn/mw690/7cafd2d5gw1f9vbl640k8j20j60j6acl.jpg"/>
+<img src="http://ww1.sinaimg.cn/mw690/7cafd2d5jw1f9w2b1t29xj20wu0e4jtb.jpg"/>
 </div>
 
 在platform和phone之间需要自定义协议，而platform需要兼容两类Accessory。再回头看HAP-NodeJS的代码，只实现了Accessory端的服务，而作为自定义的platform，没有HomeKit framework的支持，不是太容易和HAP Accessory进行通信。最暴力的办法是模拟出HomeKit framework的功能。幸好Accessory端的代码有，至少知道Accessory是怎么接收数据，处理数据，然后返回的。
